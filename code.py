@@ -1,10 +1,9 @@
 import streamlit as st
+import sqlite3
 import pandas as pd
 import numpy as np
 import json 
 import plotly.express as px
-import folium
-from streamlit_folium import st_folium
 
 
 
@@ -61,65 +60,94 @@ if option1 =='Transactions':
         if option3 == 'Q2(Apr-Jun)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2018/2.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2018/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2018/2.json')
         if option3 == 'Q3(Jul-Sep)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2018/3.json')
-            dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2018/3.json') 
+            dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2018/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2018/3.json') 
         if option3 == 'Q4(Oct-Dec)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2018/4.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2018/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2018/4.json')
     if option2 == '2019':
         if option3 == 'Q1(Jan-Mar)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2019/1.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2019/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2019/1.json')
         if option3 == 'Q2(Apr-Jun)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2019/2.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2019/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2019/2.json')
         if option3 == 'Q3(Jul-Sep)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2019/3.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2019/3.json') 
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2019/3.json')
         if option3 == 'Q4(Oct-Dec)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2019/4.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2019/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2019/4.json')
     if option2 == '2020':
         if option3 == 'Q1(Jan-Mar)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2020/1.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2020/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2020/1.json')
         if option3 == 'Q2(Apr-Jun)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2020/2.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2020/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2020/2.json')
         if option3 == 'Q3(Jul-Sep)':
             df=pd.read_json('//Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2020/3.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2020/3.json') 
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2020/3.json')
         if option3 == 'Q4(Oct-Dec)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2020/4.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2020/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2020/4.json')
     if option2 == '2021':
         if option3 == 'Q1(Jan-Mar)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2021/1.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2021/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2021/1.json')
         if option3 == 'Q2(Apr-Jun)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2021/2.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2021/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2021/2.json')
         if option3 == 'Q3(Jul-Sep)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2021/3.json')
-            dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2021/3.json') 
+            dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2021/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2021/3.json') 
         if option3 == 'Q4(Oct-Dec)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2021/4.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2021/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2021/4.json')
 
     if option2 == '2022':  
         if option3 == 'Q1(Jan-Mar)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2022/1.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2022/1.json')
+            dmap=pd.read_json('//Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2022/1.json')
         if option3 == 'Q2(Apr-Jun)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2022/2.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2022/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2022/2.json')
         if option3 == 'Q3(Jul-Sep)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2022/3.json')
-            dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2022/3.json') 
+            dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2022/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2022/3.json') 
         if option3 == 'Q4(Oct-Dec)':
             df=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/aggregated/transaction/country/india/2022/4.json')
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2022/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/transaction/hover/country/india/2022/4.json')
+      
+        
+        
+
+
+
+
+
+
+
     fg=df['data']['transactionData']
             
     fg1=pd.json_normalize(fg)
@@ -140,14 +168,53 @@ if option1 =='Transactions':
 
     det=co2_1.join(re)
 
-
-
-
-
-
                 
     st.subheader('Categories:')
     st.write(det)
+
+
+
+    dmap=dmap['data']['hoverDataList']
+    dmap=pd.json_normalize(dmap)
+    a=dmap['name']
+
+    fx=[]
+
+    for x in range(len(dmap['metric'])):
+        fx.append(dmap['metric'][x][0])
+        
+        
+
+        
+    dfma=pd.DataFrame(fx)
+
+    dfma['country_name']=a
+    #print(type(df))
+    dfma['country_name'][9]='dadara & nagar havelli'
+    dfma['country_name'][11]='andaman & nicobar island'
+    dfma.drop(14,axis=0,inplace=True)
+    dfma['country_name'][33]='arunanchal pradesh'
+    dfma.drop(34,axis=0,inplace=True)
+
+    india_states= json.load(open("/Users/kesavakumarpommu/Downloads/states_india.geojson","r"))
+
+    state_id_map = {}
+    for feature in india_states['features']:
+        feature['id']=feature['properties']['state_code']
+        state_id_map[feature['properties']['st_nm']]=feature['id']
+
+    new_dict = dict((k.lower(), v) for k, v in state_id_map.items()) 
+
+    dfma['id']=dfma['country_name'].apply(lambda x: new_dict[x])
+
+    fig=px.choropleth(dfma, 
+                    locations='id',
+                    geojson=india_states,
+                    color='count',
+                    hover_name='country_name',
+                    hover_data=['amount'],
+                    title='Transactions')
+    fig.update_geos(fitbounds='locations',visible=False)
 
 
 
@@ -158,71 +225,138 @@ if option1 =='Users':
     if option2 == '2018': 
         if option3 == 'Q1(Jan-Mar)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2018/1.json')
-           
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2018/1.json')
+
         if option3 == 'Q2(Apr-Jun)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2018/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2018/2.json')
             
         if option3 == 'Q3(Jul-Sep)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2018/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2018/3.json')
               
         if option3 == 'Q4(Oct-Dec)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2018/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2018/4.json')
     
     if option2 == '2019':
         if option3 == 'Q1(Jan-Mar)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2019/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2019/1.json')
            
         if option3 == 'Q2(Apr-Jun)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2019/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2019/2.json')
             
         if option3 == 'Q3(Jul-Sep)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2019/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2019/3.json')
               
         if option3 == 'Q4(Oct-Dec)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2019/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2019/4.json')
     
     if option2 == '2020':
         if option3 == 'Q1(Jan-Mar)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2020/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2020/1.json')
            
         if option3 == 'Q2(Apr-Jun)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2020/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2020/2.json')
             
         if option3 == 'Q3(Jul-Sep)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2020/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2020/3.json')
               
         if option3 == 'Q4(Oct-Dec)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2020/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2020/4.json')
     
     if option2 == '2021':
         if option3 == 'Q1(Jan-Mar)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2021/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2021/1.json')
            
         if option3 == 'Q2(Apr-Jun)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2021/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2021/2.json')
             
         if option3 == 'Q3(Jul-Sep)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2021/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2021/3.json')
               
         if option3 == 'Q4(Oct-Dec)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2021/4.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2021/4.json')
     
 
     if option2 == '2022':  
         if option3 == 'Q1(Jan-Mar)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2022/1.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2022/1.json')
            
         if option3 == 'Q2(Apr-Jun)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2022/2.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2022/2.json')
             
         if option3 == 'Q3(Jul-Sep)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2022/3.json')
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2022/3.json')
               
         if option3 == 'Q4(Oct-Dec)':
             dfs=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/user/country/india/2022/4.json')
-             
+            dmap=pd.read_json('/Users/kesavakumarpommu/Downloads/pulse-master/data/map/user/hover/country/india/2022/4.json')
 
-st.subheader('Top')
+    dmap=dmap['data']['hoverData']
+
+    l1=list(dmap.keys())
+    l1=pd.DataFrame(l1)
+
+    l2=list(dmap.values())
+    l2=pd.DataFrame(l2)  
+
+    dfm=pd.concat([l1,l2],axis=1)  
+    dfm.rename({0:'state_name'},axis=1,inplace=True) 
+
+    dfm['state_name'][9]='dadara & nagar havelli'
+    dfm['state_name'][11]='andaman & nicobar island'
+    dfm.drop(14,axis=0,inplace=True)
+    dfm['state_name'][33]='arunanchal pradesh'
+    dfm.drop(34,axis=0,inplace=True)     
+
+    india_states= json.load(open("/Users/kesavakumarpommu/Downloads/states_india.geojson","r"))
+
+    state_id_map = {}
+    for feature in india_states['features']:
+        feature['id']=feature['properties']['state_code']
+        state_id_map[feature['properties']['st_nm']]=feature['id']
+        
+    # state_id_map
+
+    # my_dict = {'KEY1': "Hello", 'Key2': "World"} 
+    new_dict = dict((k.lower(), v) for k, v in state_id_map.items()) 
+    dfm['id']=dfm['state_name'].apply(lambda x: new_dict[x])
+
+    fig=px.choropleth(
+        dfm, 
+        locations='id',
+        geojson=india_states,
+        color='registeredUsers',
+        hover_name='state_name',
+        hover_data=['appOpens'],
+        title='Users',
+     )
+    fig.update_geos(fitbounds='locations',visible=False)
+
+
+
+
+
+
+
+
+st.subheader('Top 10')
 col1,col2,= st.columns(2)
 
 with col1:
@@ -267,48 +401,7 @@ if st.button('Pincodes'):
                 fg1 
         
 
-dmap=dmap['data']['hoverDataList']
-dmap=pd.json_normalize(dmap)
-a=dmap['name']
-
-fx=[]
-
-for x in range(len(dmap['metric'])):
-    fx.append(dmap['metric'][x][0])
-    
-    
-
-    
-dfma=pd.DataFrame(fx)
-
-dfma['country_name']=a
-#print(type(df))
-dfma['country_name'][9]='dadara & nagar havelli'
-dfma['country_name'][11]='andaman & nicobar island'
-dfma.drop(14,axis=0,inplace=True)
-dfma['country_name'][33]='arunanchal pradesh'
-dfma.drop(34,axis=0,inplace=True)
-
-india_states= json.load(open("/Users/kesavakumarpommu/Downloads/states_india.geojson","r"))
-
-state_id_map = {}
-for feature in india_states['features']:
-    feature['id']=feature['properties']['state_code']
-    state_id_map[feature['properties']['st_nm']]=feature['id']
-
-new_dict = dict((k.lower(), v) for k, v in state_id_map.items()) 
-
-dfma['id']=dfma['country_name'].apply(lambda x: new_dict[x])
-
-fig=px.choropleth(dfma, 
-                  locations='id',
-                  geojson=india_states,
-                  color='count',
-                  hover_name='country_name',
-                  hover_data=['amount'])
-fig.update_geos(fitbounds='locations',visible=False)
-fig.show()
-# st.map(fig)
+st.plotly_chart(fig)
 
 
 
@@ -316,9 +409,7 @@ fig.show()
 
 
 
-# import sqlite3
-# import json
-# import pandas as pd
+
 
 # with open('/Users/kesavakumarpommu/Downloads/pulse-master/data/top/transaction/country/india/2018/1.json') as file:
 #     data=json.load(file)
