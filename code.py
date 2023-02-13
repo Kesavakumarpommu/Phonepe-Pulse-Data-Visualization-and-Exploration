@@ -1,8 +1,10 @@
-import streamlit as st
+
+        import streamlit as st
 import sqlite3
 import pandas as pd
 import json 
 import plotly.express as px
+import matplotlib.pyplot as plot
 
 
 
@@ -238,12 +240,12 @@ if option1 =='Transactions':
         
     dfma=pd.DataFrame(fx)
 
-    dfma['country_name']=a
+    dfma['state_name']=a
     #print(type(df))
-    dfma['country_name'][9]='dadara & nagar havelli'
-    dfma['country_name'][11]='andaman & nicobar island'
+    dfma['state_name'][9]='dadara & nagar havelli'
+    dfma['state_name'][11]='andaman & nicobar island'
     dfma.drop(14,axis=0,inplace=True)
-    dfma['country_name'][33]='arunanchal pradesh'
+    dfma['state_name'][33]='arunanchal pradesh'
     dfma.drop(34,axis=0,inplace=True)
 
     table_name4 = 'Top'
@@ -258,6 +260,10 @@ if option1 =='Transactions':
 
 
 
+    st.bar_chart(data=dfma, x="state_name", y="count", width=500, height=500, use_container_width=True)
+
+
+
     india_states= json.load(open("/Users/kesavakumarpommu/Downloads/states_india.geojson","r"))
 
     state_id_map = {}
@@ -267,18 +273,19 @@ if option1 =='Transactions':
 
     new_dict = dict((k.lower(), v) for k, v in state_id_map.items()) 
 
-    dfma['id']=dfma['country_name'].apply(lambda x: new_dict[x])
+    dfma['id']=dfma['state_name'].apply(lambda x: new_dict[x])
 
     fig=px.choropleth(dfma, 
                     locations='id',
                     geojson=india_states,
                     color='count',
-                    hover_name='country_name',
+                    hover_name='state_name',
                     hover_data=['amount'],
                     title='Transactions')
     fig.update_geos(fitbounds='locations',visible=False)
 
 
+    
 
 
 
@@ -413,6 +420,8 @@ if option1 =='Users':
 
 
     dfm = pd.read_sql("select * from Top",conn8)
+
+    st.bar_chart(data=dfm, x="state_name", y="registeredUsers", width=500, height=500, use_container_width=True)
 
 
 
@@ -557,6 +566,15 @@ if st.button('Pincodes'):
         
 
 st.plotly_chart(fig)
+
+
+
+
+
+
+
+
+
 
 
 
